@@ -93,7 +93,7 @@
       if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $letra = strtolower(trim($_POST['letra']));
 
-          // Validar que es una sola letra de la a a la z
+          
           if (!preg_match('/^[a-z]$/', $letra)) {
               echo '<p class="error">⚠️ Por favor ingrese una letra válida (a-z).</p>';
           } else {
