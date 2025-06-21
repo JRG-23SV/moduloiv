@@ -4,28 +4,28 @@
     <meta charset="UTF-8">
     <title>Verificar número par o impar</title>
     <style>
-        /* Estilos generales para el cuerpo */
+       
         body {
-            background-color: #e0f7fa; /* Color de fondo azul claro */
-            display: flex;             /* Usamos flexbox para centrar */
-            justify-content: center;   /* Centra horizontalmente */
-            align-items: center;       /* Centra verticalmente */
-            height: 100vh;             /* 100% de la altura de la pantalla */
+            background-color: #e0f7fa; 
+            display: flex;             
+            justify-content: center;   
+            align-items: center;       
+            height: 100vh;             
             font-family: Arial, sans-serif;
         }
 
-        /* Estilo para el contenedor del formulario */
+       
         .container {
             background-color: white;
             padding: 20px;
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
-            text-align: center; /* Centra el texto */
-            width: 300px; /* Ancho fijo para el formulario */
+            border-radius: 10px; 
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); 
+            text-align: center; 
+            width: 300px;
         }
 
         h1 {
-            color: #00796b; /* Color del título */
+            color: #00796b;
         }
 
         label {
@@ -52,7 +52,7 @@
         }
 
         button:hover {
-            background-color: #004d40; /* Oscurece el botón al pasar el ratón */
+            background-color: #004d40; 
         }
 
         p {
@@ -64,7 +64,7 @@
     <div class="container">
         <h1>Verifica si es par o impar</h1>
 
-        <!-- Formulario para que el usuario ingrese un número -->
+
         <form method="post" action="">
             <label for="numero">Ingrese un número:</label>
             <input type="number" name="numero" id="numero" required>
@@ -72,13 +72,11 @@
         </form>
 
         <?php
-        // Comprobamos si el formulario ha sido enviado
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $numero = $_POST['numero'];
 
-            // Validamos que sea numérico
             if (is_numeric($numero)) {
-                // Usamos el operador % para obtener el residuo
+               
                 if ($numero % 2 == 0) {
                     echo "<p>✅ El número $numero es PAR.</p>";
                 } else {
