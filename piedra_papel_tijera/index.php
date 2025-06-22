@@ -5,14 +5,14 @@ error_reporting(E_ALL);
 
 session_start();
 
-// Opciones posibles con emoji para mostrar en botones y resultado
+
 $opciones = [
     'Piedra' => '✊',
     'Papel' => '✋',
     'Tijera' => '✌️'
 ];
 
-// Inicializar variables de sesión
+
 if (!isset($_SESSION['rondas_totales'])) {
     $_SESSION['rondas_totales'] = 0;
     $_SESSION['ronda_actual'] = 0;
@@ -22,7 +22,7 @@ if (!isset($_SESSION['rondas_totales'])) {
     $_SESSION['mensaje'] = '';
 }
 
-// Función para decidir ganador de ronda
+
 function decidirGanador($jugadora, $compu) {
     if ($jugadora === $compu) return 'Empate';
     if (
@@ -33,7 +33,7 @@ function decidirGanador($jugadora, $compu) {
     return 'Computadora';
 }
 
-// Manejo iniciar partida
+
 if (isset($_POST['iniciar'])) {
     $rondas = (int)$_POST['rondas'];
     if ($rondas > 0) {
@@ -46,7 +46,7 @@ if (isset($_POST['iniciar'])) {
     }
 }
 
-// Manejo jugada
+
 if (isset($_POST['jugada']) && !$_SESSION['fin_partida']) {
     $jugadora = $_POST['jugada'];
     $compu = array_rand($opciones);
@@ -74,7 +74,7 @@ if (isset($_POST['jugada']) && !$_SESSION['fin_partida']) {
 
     if ($_SESSION['ronda_actual'] >= $_SESSION['rondas_totales']) {
         $_SESSION['fin_partida'] = true;
-        // Resultado final
+        
         if ($_SESSION['puntaje_jugadora'] > $_SESSION['puntaje_compu']) {
             $_SESSION['mensaje'] .= "<br><strong>🎊 ¡Felicidades! Ganaste la partida.</strong>";
         } elseif ($_SESSION['puntaje_jugadora'] < $_SESSION['puntaje_compu']) {
@@ -87,7 +87,7 @@ if (isset($_POST['jugada']) && !$_SESSION['fin_partida']) {
     }
 }
 
-// Reiniciar
+
 if (isset($_POST['reiniciar'])) {
     session_destroy();
     header("Location: ".$_SERVER['PHP_SELF']);
@@ -103,7 +103,7 @@ if (isset($_POST['reiniciar'])) {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
   body {
-    background: #222831; /* Fondo oscuro pero no negro absoluto */
+    background: #222831; 
     color: #eeeeee;
     font-family: 'Fira Mono', monospace, monospace;
     margin: 0; padding: 0;
@@ -190,7 +190,7 @@ if (isset($_POST['reiniciar'])) {
     <h1>Piedra, Papel o Tijera</h1>
 
 <?php if ($_SESSION['rondas_totales'] == 0): ?>
-    <!-- Formulario para iniciar la partida -->
+    
     <form method="post" action="">
       <label for="rondas">Cantidad de rondas:</label>
       <input type="number" id="rondas" name="rondas" min="1" max="20" value="5" required />
@@ -198,14 +198,14 @@ if (isset($_POST['reiniciar'])) {
     </form>
 
 <?php elseif ($_SESSION['fin_partida']): ?>
-    <!-- Fin de la partida, mostrar resultado y botón reiniciar -->
+    
     <div class="mensaje"><?= $_SESSION['mensaje'] ?></div>
     <form method="post" class="reiniciar">
       <button type="submit" name="reiniciar">Jugar de nuevo</button>
     </form>
 
 <?php else: ?>
-    <!-- Juego en curso: mostrar mensaje y botones de opciones -->
+    
     <div class="mensaje"><?= $_SESSION['mensaje'] ?: "Ronda {$_SESSION['ronda_actual']} de {$_SESSION['rondas_totales']}. Elige tu jugada:" ?></div>
 
     <form method="post" action="">
